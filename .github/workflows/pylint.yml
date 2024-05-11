@@ -22,4 +22,4 @@ jobs:
 
     - name: Run Pylint
       run: |
-        pylint '*'.py
+        pylint $(git ls-files '*.py')

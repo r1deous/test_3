@@ -24,7 +24,7 @@ jobs:
         pip install pylint
     - name: Find and lint all Python files
       run: |
-        git ls-files '*.py' -z | xargs -0 pylint > pylint_output.txt
+        git ls-files '*.py' -z | od -c
     - name: Upload pylint report
       uses: actions/upload-artifact@v2
       with:

@@ -22,4 +22,4 @@ jobs:
 
     - name: Run Pylint
       run: |
-        pylint $(git ls-files '*.py') > pylint_output.txt
+        pylint $(git ls-files '*.py') | xargs pylint > pylint_output.txt

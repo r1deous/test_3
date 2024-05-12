@@ -49,9 +49,5 @@ jobs:
           # skips: # optional, default is DEFAULT
           # path to a .bandit file that supplies command line arguments
           # ini_path: # optional, default is DEFAULT
-      - name: Upload Bandit Scan Results as Artifact
-      - uses: actions/upload-artifact@v2
-        with:
-          name: bandit-results
-          path: bandit-results.txt
+    
 

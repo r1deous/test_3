@@ -1,0 +1,32 @@
+name: Bandit
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: '23 19 * * 6'
+
+jobs:
+  bandit:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install Bandit
+        run: pip install bandit
+      - name: Run Bandit Scan
+        run: bandit -r . --format txt -o bandit-results.txt
+      - name: Upload Bandit Scan Results as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: bandit-results
+          path: bandit-results.txt

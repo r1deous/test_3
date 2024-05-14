@@ -1,4 +1,4 @@
-name: Lint Checker
+name: Flake8
 
 on:
   push:
@@ -29,4 +29,9 @@ jobs:
       - name: Run flake8
         continue-on-error: true
         run: |
-          flake8 ./ --count --show-source --statistics
+          flake8 ./ --count --show-source --statistics > fkale6_res.txt
+      - name: Upload Flake8 results
+        uses: actions/upload-artifact@v2
+        with:
+         name: flake8-results
+         path: flake8_results.txt

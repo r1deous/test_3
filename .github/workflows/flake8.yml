@@ -1,9 +1,9 @@
-name: Lint Checker
+name: Flake8
 
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
       - master

@@ -1,4 +1,4 @@
-name: Bandit Security Check
+name: Bandit SAST
 on: [push, pull_request]
 jobs:
   bandit:

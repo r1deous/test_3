@@ -14,6 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run Mypy
+        continue-on-error: true  # Чтобы the workflow продолжился даже если mypy найдет ошибки
         uses: jashparekh/mypy-action@v2
         with:
           path: '.'

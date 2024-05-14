@@ -23,10 +23,10 @@ jobs:
 
       - name: Type check
         continue-on-error: true  # Чтобы the workflow продолжился даже если mypy найдет ошибки
-        run: mypy . --no-incremental --txt-report mypy-report  # Сохраняем отчет в директории mypy-report
+        run: mypy . --no-incremental --txt-report mypy-report.txt  # Сохраняем отчет в директории mypy-report
 
       - name: Archive mypy results
         uses: actions/upload-artifact@v2
         with:
           name: mypy-results
-          path: mypy-report/*
+          path: mypy-report.txt

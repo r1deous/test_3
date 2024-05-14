@@ -26,10 +26,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
 
-      - name: Run flake8
-        continue-on-error: true
-        run: |
-          flake8 ./ --count --show-source --statistics > fkale6_res.txt
+      - name: Run Flake8 and handle errors
+        run: flake8 ./ --count --show-source --statistics > flake8_res.txt || true
+        env:
+          pythonLocation: /opt/hostedtoolcache/Python/3.9.19/x64
+          LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.19/x64/libt
+          
       - name: Upload Flake8 results
         uses: actions/upload-artifact@v2
         with:

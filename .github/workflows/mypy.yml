@@ -9,16 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Mypy
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: python -m pip install mypy==0.910
       - name: Run Mypy
-        continue-on-error: true  # Чтобы the workflow продолжился даже если mypy найдет ошибки
-        uses: jashparekh/mypy-action@v2
+        continue-on-error: true  # Продолжить даже если mypy найдет ошибки
+        run: mypy . | tee mypy_output.txt
+      - name: Upload Mypy Results
+        if: always()
+        uses: actions/upload-artifact@v3
         with:
-          path: '.'
-          mypy_version: '0.910'
-          #mypy_flags: '--verbose'
-          #mypy_config_file: 'mypy.ini'
-          #requirement_files: 'requirements.txt'
+          name: mypy-results
+          path: mypy_output.txt
